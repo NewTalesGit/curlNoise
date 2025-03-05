@@ -11,6 +11,7 @@ const settings = {
     density: 1.0,
     viscosity: 0.0,
     lifespan: 10.0,
+    colorful: false,
     mousePos: [0.0, 0.0]
   };
   
@@ -36,6 +37,7 @@ const settings = {
     dyeFolder.add(settings, 'density', 0.0, 1.0, 0.1).name('Density');
     dyeFolder.add(settings, 'viscosity', 0.0, 1.0, 0.01).name('Viscosity');
     dyeFolder.add(settings, 'lifespan', 0.0, 500.0, 1.0).name('Lifespan (s)');
+    dyeFolder.add(settings, 'colorful').name('colorful');
 
     return gui;
   }

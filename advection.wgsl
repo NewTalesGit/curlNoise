@@ -8,7 +8,8 @@ struct Uniforms {
     radius: f32,
     density: f32,
     viscosity: f32,
-    lifespan: f32
+    lifespan: f32,
+    colorful: f32
 }
 
 @group(0) @binding(0) var<uniform> uniforms: Uniforms;
@@ -56,19 +57,21 @@ fn spreadDye(coords: vec2<i32>) -> vec4<f32> {
         let angle = atan2(fcoords.y - uniforms.mousePos.y, fcoords.x - uniforms.mousePos.x);
         
         // Create more varied color patterns using different frequency oscillations
-        return vec4(
-            // Red channel: angle-based variation + time-based oscillation
-            0.6 + 0.4 * sin(6.0 * angle + uniforms.time * 1.5),
-            
-            // Green channel: distance-based rings + time oscillation
-            0.5 + 0.5 * sin(15.0 * dist + uniforms.time),
-            
-            // Blue channel: spiral pattern using angle and distance
-            0.5 + 0.5 * sin(8.0 * (angle + dist * 3.0) + uniforms.time * 0.7),
-            
-            // Alpha: maintain smooth intensity with density control
-            smoothIntensity * uniforms.density
-        );
+        if(uniforms.colorful == 1) {
+            return vec4(
+                // Red channel: angle-based variation + time-based oscillation
+                0.6 + 0.4 * sin(6.0 * angle + uniforms.time * 1.5),
+                
+                // Green channel: distance-based rings + time oscillation
+                0.5 + 0.5 * sin(15.0 * dist + uniforms.time),
+                
+                // Blue channel: spiral pattern using angle and distance
+                0.5 + 0.5 * sin(8.0 * (angle + dist * 3.0) + uniforms.time * 0.7),
+                
+                // Alpha: maintain smooth intensity with density control
+                smoothIntensity * uniforms.density
+            );
+        } else { return vec4(1.0, 1.0, 1.0, 1.0); }
     }
     
     return vec4(0.0, 0.0, 0.0, 0.0);

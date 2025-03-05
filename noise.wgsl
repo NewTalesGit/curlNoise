@@ -8,7 +8,8 @@ struct Uniforms {
     radius: f32,
     density: f32,
     viscosity: f32,
-    lifespan: f32
+    lifespan: f32,
+    colorful: f32
 }
 
 @group(0) @binding(0) var<uniform> params: Uniforms; 

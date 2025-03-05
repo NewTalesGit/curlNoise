@@ -385,7 +385,8 @@ function updateUniforms() {
         settings.radius,
         settings.density,
         settings.viscosity,
-        settings.lifespan
+        settings.lifespan,
+        settings.colorful
     ]);
     prevTime = time;
     device.queue.writeBuffer(uniformBuffer, 0, uniformData);
